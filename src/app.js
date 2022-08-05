@@ -32,8 +32,16 @@ function displayTemperature(responce) {
 
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDay(responce.data.dt * 1000);
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${responce.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", responce.data.weather[0].description);
 }
 let apiKey = "2acfad573be44e3b6850ce49fb547535";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=metric`;
+let city = "Zhytomyr";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayTemperature);
